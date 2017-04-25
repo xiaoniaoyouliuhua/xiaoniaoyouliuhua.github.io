@@ -1,0 +1,331 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>Hexo</title>
+  <meta name="author" content="John Doe" />
+
+  
+  <meta name="description" content="# 
+
+MVC 与 MVVM
+M: model 数据模型
+V: view 视图( 界面 )
+C: controller 控制器
+VM: ViewModel 视图模型
+
+
+依赖注入
+123.controller( &#39;....&#39;, [ &#39;...&#39;, function ( ... ) &amp;#123;&amp;#12" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  
+  <meta property="og:site_name" content="Hexo" />
+
+  
+  
+
+  
+    <meta property="og:image" content="undefined" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Hexo</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-04-20T10:39:24.772Z"><a href="/2017/04/20/笔记/">2017-04-20</a></time>
+      
+      
+  
+    <h1 class="title"></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p># </p>
+<ul>
+<li>MVC 与 MVVM<ul>
+<li>M: model 数据模型</li>
+<li>V: view 视图( 界面 )</li>
+<li>C: controller 控制器</li>
+<li>VM: ViewModel 视图模型</li>
+</ul>
+</li>
+<li><p>依赖注入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.controller( <span class="string">'....'</span>, [ <span class="string">'...'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"> ... </span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;] )</div></pre></td></tr></table></figure>
+<p>  就是传参</p>
+</li>
+</ul>
+<pre><code>`angular.module( &apos;mainApp&apos; )` 获得已定义的 模块 mainApp
+模块定义到哪里去了? 定义在 angular 内部.
+怎么借助于中间的桥梁, 事先安排好的暗号: 此时就是 mainApp, 即模块的名字.
+
+就是说 如果需要得到某一个东西, 首先调用对应的方法获得, 就需要给定你要申请的名字.
+angular 会根据的名字将你需要的东西返回给你.
+
+在创建控制器的时候需要使用 `$scope`, `$log`, `$timeout`, `$interval`, ...
+然而这些对象都是 angular 创建的, 因此需要提交申请.
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.controler( <span class="string">'mainController'</span>, [ <span class="string">'$scope'</span>, <span class="string">'$log'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"> $scope, $log </span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;] );</div></pre></td></tr></table></figure>
+<pre><code>所谓的依赖注入:
+- 依赖: 需要
+- 注入: 传入
+</code></pre><ul>
+<li>$scope 作用域</li>
+<li>controller 参数与作用</li>
+</ul>
+<ul>
+<li>执行原理与基本结构( $watch, $apply )</li>
+<li>$scope和$watch里面的机制是什么</li>
+<li>脏检查</li>
+</ul>
+<ul>
+<li>兄弟间传值( 观察者模式 )</li>
+<li>on( ‘type’ ,.. )</li>
+<li>事件指令</li>
+<li>ng-class</li>
+<li>ng-model和ng-init的区别  为什么加了init后在脚本里就不能再修改标签里的值了</li>
+</ul>
+<h1 id="网站开发的发展历程"><a href="#网站开发的发展历程" class="headerlink" title="网站开发的发展历程"></a>网站开发的发展历程</h1><ul>
+<li><p>静态页面时代<br>  浏览器, 服务器<br>  特点: 服务器只是接收请求, 读取本地静态资源( html, css, js, png, … ), 发送这些资源</p>
+<pre><code>浏览器接收资源, 渲染显示
+</code></pre><p>  补充: 服务器, 网站根目录的含义</p>
+<pre><code>在 服务器计算机上有一个 文件夹, 这个文件夹放置着页面的所有文件
+利用 http 软件, 设置该文件夹为网站根目录.
+由于安全问题, http 设置了网站根目录后, 那么只允许访问该目录下的所有资源.
+不允许访问其他父级目录( 除非特殊设置 )
+
+url: 
+  协议://域名或IP:端口号/文件路径?参数...
+</code></pre></li>
+<li>动态网站时代<br>  问题: 比如百度搜索, 不可能将搜索的页面设计成静态页面. 必须引入动态网站( php )<br>  特点: 一般 url 都带有参数( get, post )<pre><code>服务器拿到数据之后检查如果是 php 请求, 将该请求交给 php 引擎
+php 执行代码, 拼接 html 格式的字符串, 返回给 服务器
+服务器在将该 html 形式的字符串 发送给浏览器
+浏览器再解析执行渲染显示.
+</code></pre>  思想在这里发展: MVC, …</li>
+<li>过度阶段( 分布式雏形 )<br>  特点: 服务器接收请求, 获得数据, 返回最小的数据, 由浏览器来显示最终的效果( DOM )</li>
+<li>webapi 阶段<br>  特点: 服务器只提供数据, 最终如何显示由其他结构来决定</li>
+</ul>
+<p>典型案例<br>    给定一个 数据, 生成一个 table<br>    var data = [<br>        { name: ‘jim1’, age: 19, gender: ‘男’ },<br>        { name: ‘jim2’, age: 9, gender: ‘女’ },<br>        { name: ‘jim3’, age: 29, gender: ‘男’ },<br>        { name: ‘jim4’, age: 39, gender: ‘女’ },<br>        { name: ‘jim5’, age: 49, gender: ‘女’ }<br>    ];</p>
+<pre><code>传统的处理办法( DOM )
+改良的传统办法( innerHTML )
+</code></pre><h2 id="分离的思想"><a href="#分离的思想" class="headerlink" title="分离的思想"></a>分离的思想</h2><pre><code>早期将 数据, 界面, 逻辑混合在一起开发, 维护的时候就会很麻烦
+将数据, 界面, 逻辑分离
+</code></pre><h1 id="MVVM-问题引入"><a href="#MVVM-问题引入" class="headerlink" title="MVVM 问题引入"></a>MVVM 问题引入</h1><pre><code>- 维护代码需要提供交互
+- 数据模型的准确性
+    - 存储用户信息: 性别
+    - 汉字: GB2312 2 个字节, unicode 2 个字节, utf-8 三个字节
+    - 一般数据存储的时候 男使 用 m( male ), 女 使用 f ( female )
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = [</div><div class="line">    &#123; <span class="attr">name</span>: <span class="string">'jim1'</span>, <span class="attr">age</span>: <span class="number">19</span>, <span class="attr">gender</span>: <span class="string">'m'</span> &#125;,</div><div class="line">    &#123; <span class="attr">name</span>: <span class="string">'jim2'</span>, <span class="attr">age</span>: <span class="number">9</span>, <span class="attr">gender</span>: <span class="string">'f'</span> &#125;,</div><div class="line">    &#123; <span class="attr">name</span>: <span class="string">'jim3'</span>, <span class="attr">age</span>: <span class="number">29</span>, <span class="attr">gender</span>: <span class="string">'m'</span> &#125;,</div><div class="line">    &#123; <span class="attr">name</span>: <span class="string">'jim4'</span>, <span class="attr">age</span>: <span class="number">39</span>, <span class="attr">gender</span>: <span class="string">'f'</span> &#125;,</div><div class="line">    &#123; <span class="attr">name</span>: <span class="string">'jim5'</span>, <span class="attr">age</span>: <span class="number">49</span>, <span class="attr">gender</span>: <span class="string">'f'</span> &#125;</div><div class="line">];</div></pre></td></tr></table></figure>
+<pre><code>    - 需要提供一个转换
+
+- 电商的例子
+    - 用户存储单独存放
+    - 商品存储单独存放
+
+    - 页面显示的时候是一起显示
+
+- 在实际应用中, 更多的是进行页面的交互, 而最后一次性向服务器提交处理
+  也就是说以前 控制器( 维护视图与 Model 的桥梁 )功能被弱化. 而增强了
+  视图与视图模型的使用. 因此将其称为 MVVM
+</code></pre><p># </p>
+<pre><code>- DOM 的含义是 文档对象模型. 
+</code></pre><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>123<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span>4<span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"display: inline;"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">div</span>&gt;</span>6<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span>789<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<pre><code>- 将 第二个 div 中文本的颜色改成 红色
+- 将整个 页面 看成一个节点( Node )树, 任何内容都是节点. 节点与节点之间只有父子关系与兄弟关系
+
+
+&apos;get-element-by-id&apos; =&gt; &apos;getElementById&apos;
+
+&apos;get-element-by-id&apos;.replace( /-(.)/g, function ( _, first ) {
+    return first.toUpperCase();
+});
+
+&apos;getElementById&apos; =&gt; &apos;get-element-by-id&apos;
+
+&apos;AAA&apos; =&gt; &apos;a-a-a&apos;
+&apos;getElementById&apos;.replace( /(.)([A-Z])/g, function( _, prev, next ) {
+    return prev + &apos;-&apos; + next.toLowerCase();
+}).replace( /(.)([A-Z])/g, function( _, prev, next ) {
+    return prev + &apos;-&apos; + next.toLowerCase();
+})
+</code></pre><h1 id="angular"><a href="#angular" class="headerlink" title="angular"></a>angular</h1><pre><code>- ng 他是一个典型的 mvvm 框架
+    - 框架与库的区别
+    - 如果使用 ng 的步骤
+        1. 引入 angular.js
+        2. 添加 ng-app 属性
+        3. 添加 ng-xxx 等属性
+    - ng 最大的特点就是双向数据绑定
+</code></pre><h2 id="案例"><a href="#案例" class="headerlink" title="案例:"></a>案例:</h2><pre><code>- 要求页面中提供两个 文本框, 要求任意在一个文本框中输入内容, 两个文本框的数据同步
+
+- 补充:
+    - 在 ng 中凡是以 ng- 开头的这些属性 都称为 ng 的 指令( directive )
+    - 所谓的指令就是给 标准的 html 标签提供一些额外的操作( 额外的功能 )
+    - 指令不一定都是 以 ng- 开头, 还有以标签形式存在的, 以 class 形式存在的, 以 注释形式存在的
+</code></pre><h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><pre><code>- http-server
+    是一个 轻量级的 http 服务器, 使用的 是 node 平台( npm )
+    使用 npm 安装 http-server
+    语法: npm install -g http-server --registry=https://registry.npm.taobao.org
+    安装好以后可以使用 http-server 或 hs 表示该命令
+    使用的语法: hs -o -p 8081, 将当前目录作为 网站的根目录
+</code></pre><h2 id="模块-module"><a href="#模块-module" class="headerlink" title="模块( module )"></a>模块( module )</h2><pre><code>- ng 中, 所有的 页面不可能将所有的东西都做成属性, 还需要事件等其他更多的功能
+- 如果需要提供点击的行为, 那么就需要使用 ng-click 的指令
+    语法: ng-click=&quot;func()&quot;
+    当用户点击行为发生的时候, ng 就会自动的调用 函数 func() 
+    问题是 这个函数应该在哪? 就在 $rootScope 上
+    此时需要编写代码
+- 如果用户不写任何代码( 不给 ng-app 来提供名字 ), 那么 ng 就会自动的维护一个 模块 对象.
+- 但是如果需要实现一些复杂的功能 就必须手动的创建模块, 那么就必须让我们创建的模块与 界面绑定( 给 ng-app 赋值 )
+- 如果用户给 ng-app 提供了名字, 那么 ng 就不会再创建 模块来维护代码了
+
+创建模块的语法
+    angular.module( &apos;模块名&apos;, [] ) -&gt; 模块对象
+    该方法会创建一个模块, 并将其命名为 指定的名字
+说明:
+    1&gt; 第二个参数 [] 是用于加载其他模块使用的
+    2&gt; 如果不提供第二个参数, 那么就表明是在获得模块( 以前已经定义 )
+
+在 ng 中 一个 页面就相当于一个 angular 的应用程序( ng-app ), 
+在 ng 中 一个页面默认只允许有一个主模块, 即 ng-app.
+
+如果必须让一个页面有多个 ng-app 必须使用手动代码绑定( 引导 )
+语法: angular.bootstrap( dom元素, [ &apos;模块名&apos; ] )
+</code></pre><h1 id="run-方法"><a href="#run-方法" class="headerlink" title="run 方法"></a>run 方法</h1><pre><code>在 ng 中 有一个 run 方法, 表示一运行起来的方法, 类似于 window.onload
+语法:
+    &lt;module&gt;.run( [ &apos;$rootScope&apos;, function ( $rootScope ) {
+        // ...
+    }] );
+使用 run 方法一般都是进行初始化, 如果需要有点击的行为 那么就给 $rootScope 提供方法即可
+</code></pre><h1 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h1><pre><code>与传统 mvc 中的 控制器不一样. ng 的控制器用于划分逻辑, 与初始化数据
+在页面中定义多个 控制器, 可以将全局 $rootScoep 解放出来. 
+每一个 控制器背后依旧会有一个 $scope
+每一个控制器单独维护一个具体的任务. 
+
+使用步骤:
+1&gt; 在模块中要创建控制器
+2&gt; 在 页面中使用 ng-controller 指令, 注明使用哪一个控制器
+3&gt; 在 控制器中写初始化代码
+</code></pre>
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Neueste Artikel</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2017/04/24/移动App-关于webpack/"></a>
+      </li>
+    
+      <li>
+        <a href="/2017/04/20/笔记/"></a>
+      </li>
+    
+      <li>
+        <a href="/2017/03/22/Gulp笔记/"></a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2017 John Doe
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>
