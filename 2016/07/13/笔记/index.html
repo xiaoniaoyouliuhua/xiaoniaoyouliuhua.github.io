@@ -243,13 +243,87 @@ php 执行代码, 拼接 html 格式的字符串, 返回给 服务器
 2&gt; 在 页面中使用 ng-controller 指令, 注明使用哪一个控制器
 3&gt; 在 控制器中写初始化代码
 </code></pre><h1 id="环形进度条"><a href="#环形进度条" class="headerlink" title="环形进度条"></a>环形进度条</h1><pre><code>``
-    &lt;!DOCTYPE html&gt;  
-</code></pre><p><html lang="cn">  </html></p>
-<p><head><br>    <meta charset="UTF-8"><br>    <title>Document</title><br>    <style><br>    *{<br>        margin: 0;<br>        padding: 0;<br>    }<br>    .wrap,.circle,.percent{<br>        position: absolute;<br>        width: 200px;<br>        height: 200px;<br>        border-radius: 50%;<br>    }<br>    .wrap{<br>        top:50px;<br>        left:50px;<br>        background-color: #ccc;<br>    }<br>    .circle{<br>        box-sizing: border-box;<br>        border:20px solid #ccc;<br>        clip:rect(0,200px,200px,100px);<br>    }<br>    .clip-auto{<br>        clip:rect(auto, auto, auto, auto);<br>    }<br>    .percent{<br>        box-sizing: border-box;<br>        top:-20px;<br>        left:-20px;<br>    }<br>    .left{<br>        transition:transform ease;<br>        border:20px solid blue;<br>        clip: rect(0,100px,200px,0);<br>    }<br>    .right{<br>        border:20px solid blue;<br>        clip: rect(0,200px,200px,100px);<br>    }<br>    .wth0{<br>        width:0;<br>    }<br>    .num{<br>        position: absolute;<br>        box-sizing: border-box;<br>        width: 160px;<br>        height: 160px;<br>        line-height: 160px;<br>        text-align: center;<br>        font-size: 40px;<br>        left: 20px;<br>        top: 20px;<br>        border-radius: 50%;<br>        background-color: #fff;<br>        z-index: 1;<br>    }<br>    </style><br>    <script src="http://apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js"></script><br></head>  </p>
-<p><body>  </body></p>
-<p><div class="wrap"><br>    <div class="circle"><br>        <div class="percent left"></div><br>        <div class="percent right wth0"></div><br>    </div><br>    <div class="num"><span>0</span>%</div><br></div><br>  </p>
-<p><script><br>    var percent=0;<br>    var loading=setInterval(function(){<br>        if(percent&gt;100){<br>            percent=0;<br>            $(‘.circle’).removeClass(‘clip-auto’);<br>            $(‘.right’).addClass(‘wth0’);<br>        }else if(percent&gt;50){<br>            $(‘.circle’).addClass(‘clip-auto’);<br>            $(‘.right’).removeClass(‘wth0’);<br>        }<br>        $(‘.left’).css(“-webkit-transform”,”rotate(“+(18/5)*percent+”deg)”);<br>        $(‘.num&gt;span’).text(percent);<br>        percent++;<br>    },200);<br></script><br><br>    ``</p>
+&lt;style&gt;  
+*{  
+    margin: 0;  
+    padding: 0;  
+}  
+.wrap,.circle,.percent{  
+    position: absolute;  
+    width: 200px;  
+    height: 200px;  
+    border-radius: 50%;  
+}  
+.wrap{  
+    top:50px;  
+    left:50px;  
+    background-color: #ccc;  
+}  
+.circle{  
+    box-sizing: border-box;  
+    border:20px solid #ccc;  
+    clip:rect(0,200px,200px,100px);  
+}  
+.clip-auto{  
+    clip:rect(auto, auto, auto, auto);  
+}  
+.percent{  
+    box-sizing: border-box;  
+    top:-20px;  
+    left:-20px;  
+}  
+.left{  
+    transition:transform ease;  
+    border:20px solid blue;  
+    clip: rect(0,100px,200px,0);  
+}  
+.right{  
+    border:20px solid blue;  
+    clip: rect(0,200px,200px,100px);  
+}  
+.wth0{  
+    width:0;  
+}  
+.num{  
+    position: absolute;  
+    box-sizing: border-box;  
+    width: 160px;  
+    height: 160px;  
+    line-height: 160px;  
+    text-align: center;  
+    font-size: 40px;  
+    left: 20px;  
+    top: 20px;  
+    border-radius: 50%;  
+    background-color: #fff;  
+    z-index: 1;  
+}  
+&lt;/style&gt;  
+&lt;script src=&quot;http://apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js&quot;&gt;&lt;/script&gt;  
+</code></pre><!--<div class="wrap">  
+    <div class="circle">  
+        <div class="percent left"></div>  
+        <div class="percent right wth0"></div>  
+    </div>  
+    <div class="num"><span>0</span>%</div>  
+</div>  -->
+<pre><code>var percent=0;  
+var loading=setInterval(function(){  
+    if(percent&gt;100){  
+        percent=0;  
+        $(&apos;.circle&apos;).removeClass(&apos;clip-auto&apos;);  
+        $(&apos;.right&apos;).addClass(&apos;wth0&apos;);  
+    }else if(percent&gt;50){  
+        $(&apos;.circle&apos;).addClass(&apos;clip-auto&apos;);  
+        $(&apos;.right&apos;).removeClass(&apos;wth0&apos;);  
+    }  
+    $(&apos;.left&apos;).css(&quot;-webkit-transform&quot;,&quot;rotate(&quot;+(18/5)*percent+&quot;deg)&quot;);  
+    $(&apos;.num&gt;span&apos;).text(percent);  
+    percent++;  
+},200);  
 
+``
+</code></pre>
       
     </div>
     
